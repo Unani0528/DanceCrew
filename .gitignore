@@ -205,3 +205,86 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ----- vite + react ----- #
+
+# dependencies
+node_modules/
+
+# production
+dist/
+build/
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# cache
+.vite/
+.cache/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+
+# misc
+.DS_Store
+Thumbs.db
+
+# test coverage
+coverage/
+
+
+# ----- Django ----- #
+# Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Django specific
+local_settings.py          # 개인 설정 파일 (있을 경우)
+db.sqlite3                 # 기본 개발용 SQLite DB 파일
+db.sqlite3-journal         # SQLite 저널 파일
+media/                     # 업로드된 미디어 파일 (프로덕션에서 제외)
+
+# Logs
+*.log
+
+# Translations
+*.pot
+*.mo
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+.env.*
+
+# Pytest cache, coverage reports
+.coverage
+.coverage.*
+.pytest_cache/
+
+# Static files - 빌드 결과(collectstatic) 관련 (프로덕션에 따라 다름)
+staticfiles/
+
+# 기타 빌드 파일 및 환경
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 운영체제별 임시 파일
+.DS_Store
+Thumbs.db
+
