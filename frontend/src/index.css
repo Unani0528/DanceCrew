@@ -1,3 +1,7 @@
+@import "tailwindcss/preflight"; /* base 스타일 초기화 */
+@tailwind utilities;  /* Tailwind 유틸리티 클래스 */
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
