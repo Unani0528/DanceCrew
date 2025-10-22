@@ -32,5 +32,4 @@ class Comments(models.Model):
     created_at = models.DateTimeField(auto_now_add=False)
 
     class Meta:
-        app_label = 'kss'
         db_table = 'comments'
