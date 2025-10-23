@@ -25,6 +25,10 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+DB_USER = env("DB_USER")
+DB_PW = env("DB_USER_PW")
+DB_HOST = env("DB_HOST")
+DB_PORT = env("DB_PORT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,10 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # MySQL 엔진 사용
         'NAME': 'kss',
-        'USER': 'kss',
-        'PASSWORD': 'kss123',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'USER': DB_USER,
+        'PASSWORD': DB_PW,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
         'OPTIONS': {
             'charset': 'utf8mb4',
         },

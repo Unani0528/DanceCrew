@@ -1,6 +1,6 @@
 from django.db import models
 
-class stock_models(models.Model):
+class Stock(models.Model):
     # PK
     idx = models.AutoField(primary_key=True)
 
@@ -15,3 +15,6 @@ class stock_models(models.Model):
 
     # 업종
     stock_category = models.CharField(max_length=10, unique=True)
+
+    class Meta:
+        db_table = 'stock'

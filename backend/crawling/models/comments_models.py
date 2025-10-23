@@ -11,7 +11,7 @@ class Comments(models.Model):
     comment_id = models.BigIntegerField()
 
     # 글 제목
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, blank=True, null=True)
 
     # 글 본문
     message = models.TextField()
@@ -32,5 +32,4 @@ class Comments(models.Model):
     created_at = models.DateTimeField(auto_now_add=False)
 
     class Meta:
-        app_label = 'kss'
         db_table = 'comments'
