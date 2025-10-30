@@ -1,0 +1,26 @@
+-- 접속: (예: mysql 클라이언트)
+-- mysql -h 220.149.13.182 -P 616 -u kss -p
+-- 비밀번호: kss1234
+
+-- 1) 사용 가능한 데이터베이스 보기
+SHOW DATABASES;
+
+-- 2) 작업할 DB가 결정되면 (예: database_name) 사용
+USE database_name;
+
+-- 3) 테이블 목록 보기
+SHOW TABLES;
+
+-- 4) 특정 테이블 구조(컬럼) 확인
+DESCRIBE table_name;
+-- 또는 상세 정보:
+SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, COLUMN_KEY
+FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA = 'database_name' AND TABLE_NAME = 'table_name'
+ORDER BY ORDINAL_POSITION;
+
+-- 5) 스키마 전체 컬럼 목록(데이터베이스 단위)
+SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE
+FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA = 'database_name'
+ORDER BY TABLE_NAME, ORDINAL_POSITION;
