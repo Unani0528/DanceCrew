@@ -1,13 +1,22 @@
+<!--
+    애플리케이션의 진입점 역할을 하는 HTML 문서입니다.
+    React가 렌더링될 root div와 main.tsx 스크립트를 연결합니다.
+-->
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <!-- 파비콘을 설정하는 부분, 브라우저 탭에 표시되는 아이콘 -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- 반응형 뷰포트 설정, 모바일 등 다양한 화면 크기에 적합하게 함 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 페이지 제목 -->
     <title>kss</title>
   </head>
   <body>
+    <!-- React 애플리케이션이 실제로 렌더링될 DOM 요소, React가 이 요소에 컴포넌트를 덮어씌움 -->
     <div id="root"></div>
+    <!-- Vite로 빌드된 main.tsx 모듈을 불러와서 React 애플리케이션을 실행시킴 -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

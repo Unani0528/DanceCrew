@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* max-width와 padding 제거 - 전체 페이지 레이아웃에는 불필요 */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
+  width: 100%;
+  min-height: 100vh;
 }
 
 .logo {
