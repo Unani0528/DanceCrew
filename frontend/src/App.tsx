@@ -1,35 +1,16 @@
+// React의 상태 관리 훅 useState를 임포트한다.
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+// InsightPulse 컴포넌트를 임포트
+import InsightPulse from './InsightPulse'
+
 import './App.css'
 
+// App 컴포넌트 함수 정의 시작
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  // React JSX 반환부 - InsightPulse 컴포넌트를 렌더링
+  return <InsightPulse />
 }
 
+// App 컴포넌트를 외부에 기본 내보내기(export)한다.
 export default App
