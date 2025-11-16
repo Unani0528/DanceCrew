@@ -20,7 +20,7 @@ export default function KeyOpinionLeaders({ leaders }: KeyOpinionLeadersProps) {
     <div className="bg-white rounded-lg p-6 border border-gray-200">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">👥</span>
-        <h3 className="text-lg font-semibold text-gray-900">핵심 오피니언 리더</h3>
+        <h3 className="text-lg font-semibold text-gray-900">여론 주도자 의견</h3>
       </div>
 
       <div className="space-y-4">

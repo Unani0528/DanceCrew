@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('comments/', include('crawling.urls'))
+    path('api/', include('crawling.urls')),  # /api/stock-price/<code>/ 형태로 접근
 ]

@@ -1,10 +1,10 @@
 import type { Narrative } from '../../types';
 
 interface NarrativeExtractorProps {
-  narratives: Narrative[];
+  narratives?: Narrative[];
 }
 
-export default function NarrativeExtractor({ narratives }: NarrativeExtractorProps) {
+export default function NarrativeExtractor({ narratives = [] }: NarrativeExtractorProps) {
   const positiveNarratives = narratives.filter(n => n.sentiment === 'positive');
   const negativeNarratives = narratives.filter(n => n.sentiment === 'negative');
 
@@ -40,7 +40,7 @@ export default function NarrativeExtractor({ narratives }: NarrativeExtractorPro
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {narrative.examples.map((example, idx) => (
+                    {narrative.examples?.map((example, idx) => (
                       <span key={idx} className="px-2 py-1 bg-green-800 bg-opacity-50 rounded text-xs text-green-200">
                         {example}
                       </span>
@@ -79,7 +79,7 @@ export default function NarrativeExtractor({ narratives }: NarrativeExtractorPro
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {narrative.examples.map((example, idx) => (
+                    {narrative.examples?.map((example, idx) => (
                       <span key={idx} className="px-2 py-1 bg-red-800 bg-opacity-50 rounded text-xs text-red-200">
                         {example}
                       </span>
