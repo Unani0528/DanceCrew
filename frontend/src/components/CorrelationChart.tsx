@@ -28,7 +28,15 @@ export default function CorrelationChart({ data }: CorrelationChartProps) {
               color: '#1f2937',
             }}
           />
-          <Legend />
+          <Legend 
+            wrapperStyle={{
+              paddingTop: '20px',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
+            iconSize={24}
+            iconType="line"
+          />
           <Line
             yAxisId="left"
             type="monotone"

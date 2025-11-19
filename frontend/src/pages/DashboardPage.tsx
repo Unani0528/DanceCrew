@@ -45,14 +45,14 @@ export default function DashboardPage() {
 
   if (loading || !selectedStock) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
+      <div className="flex items-center justify-center h-screen bg-gray-200">
         <div className="text-gray-600">로딩 중...</div>
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-200">
       <Sidebar onSelectCompany={handleCompanySelect} selectedId={selectedStock.id} />
       
       <div className="flex-1 flex flex-col overflow-hidden ml-16">
