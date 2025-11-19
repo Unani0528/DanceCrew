@@ -203,7 +203,6 @@ export async function getStockData(company: Company): Promise<Stock> {
       realtimeSummary: sentiment.summary,
       keyKeywords: keywords,
       chartData: hourlySentiment,
-      sentimentPriceData: mergeSentimentAndPrice(sentimentTrend, stockPrice),
       debates: [], // TODO: 백엔드에서 제공 시 추가
       peerComparison: [], // TODO: 백엔드에서 제공 시 추가
       rawComments: comments,
