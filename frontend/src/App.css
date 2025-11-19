@@ -1,44 +1,603 @@
-#root {
-  /* max-width와 padding 제거 - 전체 페이지 레이아웃에는 불필요 */
-  /* margin: 0 auto; */
-  /* padding: 2rem; */
-  /* text-align: center; */
-  width: 100%;
+/* 앱 전체 레이아웃 */
+.app-container {
+  display: flex;
   min-height: 100vh;
+  background: #ffffff;
+  position: relative;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 호버 트리거 영역 - 화면 왼쪽 끝 */
+.sidebar-trigger {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100vh;
+  z-index: 999;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* 슬라이드 사이드바 */
+.sidebar {
+  position: fixed;
+  left: -280px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 2px solid #e5e7eb;
+  padding: 1.5rem;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.card {
-  padding: 2em;
+.sidebar.visible {
+  left: 0;
 }
 
-.read-the-docs {
-  color: #888;
+.sidebar h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
 }
+
+.stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stock-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.stock-item:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateX(4px);
+}
+
+.stock-item.active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.stock-rank {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  min-width: 35px;
+}
+
+.stock-info {
+  flex: 1;
+}
+
+.stock-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.stock-code {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* 종목 페이지 */
+.stock-page {
+  padding: 2rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+.stock-page-empty, .stock-page-loading {
+  padding: 5rem;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #9ca3af;
+}
+
+/* 1. AI 어드바이저 */
+.ai-advisor {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ai-icon {
+  font-size: 2rem;
+}
+
+.ai-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* 2. 여론점수 + 키워드 */
+.sentiment-keywords-section {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.sentiment-gauge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keywords-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.keyword-box {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.keyword-box h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.positive-box {
+  background: #d1fae5;
+  border: 2px solid #10b981;
+}
+
+.positive-box h4 {
+  color: #065f46;
+}
+
+.negative-box {
+  background: #fee2e2;
+  border: 2px solid #ef4444;
+}
+
+.negative-box h4 {
+  color: #991b1b;
+}
+
+.core-box {
+  background: #e0e7ff;
+  border: 2px solid #6366f1;
+}
+
+.core-box h4 {
+  color: #3730a3;
+}
+
+.keyword-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.keyword-item:last-child {
+  margin-bottom: 0;
+}
+
+.keyword-item.positive {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.keyword-item.negative {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.keyword-item.core {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* 3. 공포탐욕지수 + AI 브리핑 */
+.fear-greed-briefing-section {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.fear-greed-chart {
+  text-align: center;
+}
+
+.fear-greed-chart h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.fear-greed-label {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.ai-briefing h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.briefing-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.briefing-list li {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
+  background: #f3f4f6;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  line-height: 1.6;
+}
+
+.briefing-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* 4. 내러티브 */
+.narratives-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.narratives-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+.narratives-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.narrative-box {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.narrative-box h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.positive-narrative {
+  background: #ecfdf5;
+  border: 2px solid #10b981;
+}
+
+.positive-narrative h4 {
+  color: #065f46;
+}
+
+.negative-narrative {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+}
+
+.negative-narrative h4 {
+  color: #991b1b;
+}
+
+.narrative-item {
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  background: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.narrative-item:last-child {
+  margin-bottom: 0;
+}
+
+.positive-narrative .narrative-item {
+  color: #047857;
+}
+
+.negative-narrative .narrative-item {
+  color: #dc2626;
+}
+
+/* 5. 영향도 차트 */
+.impact-chart-section {
+  padding: 2rem;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.sentiment-impact-chart h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* 로딩 및 에러 상태 */
+.loading,
+.error {
+  padding: 1rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.error {
+  color: #dc2626;
+}
+
+
+/* 차트 섹션 */
+.chart-section {
+  margin-bottom: 2rem;
+}
+
+.timeseries-chart {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.chart-header h4 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.period-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.period-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.period-btn:hover {
+  background: #f3f4f6;
+}
+
+.period-btn.active {
+  background: #3b82f6;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+.chart-svg {
+  display: block;
+}
+
+/* 하단 그리드 */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.grid-item {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.grid-item h4 {
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+}
+
+/* 분석 테이블 */
+.analysis-table-container {
+  overflow-x: auto;
+}
+
+.analysis-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.analysis-table th,
+.analysis-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.analysis-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.analysis-table tr:hover {
+  background: #f9fafb;
+}
+
+/* 섹터 비교 */
+.sector-comparison h4 {
+  margin-bottom: 1rem;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-label {
+  min-width: 100px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.bar-container {
+  flex: 1;
+  background: #f3f4f6;
+  border-radius: 4px;
+  height: 32px;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  transition: width 0.5s ease;
+}
+
+.bar-fill.highlighted {
+  background: #ef4444;
+}
+
+.bar-value {
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* 실시간 토론 */
+.live-discussion h4 {
+  margin-bottom: 1rem;
+}
+
+.discussion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.discussion-item {
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.discussion-item:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.discussion-title {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.discussion-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.discussion-meta span {
+  display: flex;
+  align-items: center;
+}
+
+/* 로딩 및 에러 상태 */
+.loading,
+.error {
+  padding: 1rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.error {
+  color: #dc2626;
+}
+
