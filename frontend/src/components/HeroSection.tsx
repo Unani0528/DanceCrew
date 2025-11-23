@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Sparkles, Search } from 'lucide-react';
+import { MOCK_COMPANIES } from '../constants';
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      // 종목 페이지로 이동 (예: /stock/삼성전자)
-      window.location.href = `/stock/${encodeURIComponent(searchQuery.trim())}`;
+    if (!searchQuery.trim()) return;
+
+    const query = searchQuery.trim();
+    
+    // 종목명이나 종목코드로 검색
+    const company = MOCK_COMPANIES.find(
+      c => c.name.includes(query) || c.ticker === query
+    );
+
+    if (company) {
+      // 종목을 찾으면 해당 종목 상세 페이지로 이동
+      navigate(`/stock/${company.ticker}`);
+    } else {
+      // 종목을 못 찾으면 알림 (나중에 백엔드 API로 검색하도록 변경 가능)
+      alert('해당 종목을 찾을 수 없습니다. 종목명 또는 종목코드를 확인해주세요.');
     }
   };
 

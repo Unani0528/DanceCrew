@@ -122,7 +122,15 @@ export default function SentimentPriceChart({ data, stockCode = '005930' }: Sent
               return [value.toFixed(1) + '%', name];
             }}
           />
-          <Legend />
+          <Legend 
+            wrapperStyle={{
+              paddingTop: '24px',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
+            iconSize={28}
+            iconType="square"
+          />
           
           {/* 막대그래프: 긍정/부정 감정 */}
           <Bar 

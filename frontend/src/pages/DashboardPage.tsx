@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Stock, Company } from '../types';
 import { MOCK_COMPANIES } from '../constants';
 import { getStockData } from '../services/stockService';
-import Header from './layout/Header';
-import Sidebar from './layout/Sidebar';
-import WelcomeHeader from './dashboard/WelcomeHeader';
-import AiAdvisorPanel from './dashboard/AiAdvisorPanel';
-import RealtimeSummaryPanel from './dashboard/RealtimeSummaryPanel';
-import CorrelationChart from './CorrelationChart';
-import InsightPanels from './InsightPanels';
-import RawDataSample from './RawDataSample';
-import FomoAlert from './dashboard/FomoAlert';
-import NarrativeExtractor from './dashboard/NarrativeExtractor';
-import KeyOpinionLeaders from './dashboard/KeyOpinionLeaders';
-import DailyBriefing from './dashboard/DailyBriefing';
-import SentimentPriceChart from './dashboard/SentimentPriceChart';
+import Header from '../components/layout/Header';
+import Sidebar from '../components/layout/Sidebar';
+import WelcomeHeader from '../components/dashboard/WelcomeHeader';
+import AiAdvisorPanel from '../components/dashboard/AiAdvisorPanel';
+import RealtimeSummaryPanel from '../components/dashboard/RealtimeSummaryPanel';
+import CorrelationChart from '../components/CorrelationChart';
+import InsightPanels from '../components/InsightPanels';
+import RawDataSample from '../components/RawDataSample';
+import FomoAlert from '../components/dashboard/FomoAlert';
+import NarrativeExtractor from '../components/dashboard/NarrativeExtractor';
+import KeyOpinionLeaders from '../components/dashboard/KeyOpinionLeaders';
+import DailyBriefing from '../components/dashboard/DailyBriefing';
+import SentimentPriceChart from '../components/dashboard/SentimentPriceChart';
 
-export default function MainContent() {
+export default function DashboardPage() {
+  const navigate = useNavigate();
   const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,19 +40,19 @@ export default function MainContent() {
   };
 
   const handleCompanySelect = (company: Company) => {
-    loadStockData(company);
+    navigate(`/stock/${company.ticker}`);
   };
 
   if (loading || !selectedStock) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
+      <div className="flex items-center justify-center h-screen bg-gray-200">
         <div className="text-gray-600">로딩 중...</div>
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-200">
       <Sidebar onSelectCompany={handleCompanySelect} selectedId={selectedStock.id} />
       
       <div className="flex-1 flex flex-col overflow-hidden ml-16">
