@@ -4,6 +4,9 @@ class Comments(models.Model):
     # PK
     idx = models.AutoField(primary_key=True)
 
+    # Stock Name
+    name = models.CharField(max_length=50, blank=True, null=False)
+
     # Toss/Naver 구분용
     site = models.CharField(max_length=5)
 
@@ -30,6 +33,9 @@ class Comments(models.Model):
 
     # 댓글이 작성된 날짜
     created_at = models.DateTimeField(auto_now_add=False)
+
+    # 감정 분류
+    emotion = models.IntegerField(blank=True, null=False, default=3)
 
     class Meta:
         db_table = 'comments'

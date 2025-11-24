@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from comments.views import get_last_update as last_comments_update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('crawling.urls')),  # /api/stock-price/<code>/ 형태로 접근
+    path('api/comments/last-update/', last_comments_update(), name='comments-last-update'),
 ]
