@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Sparkles, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // 종목 페이지로 이동 (예: /stock/삼성전자)
-      window.location.href = `/stock/${encodeURIComponent(searchQuery.trim())}`;
+        navigate(`/stock/${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
